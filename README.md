@@ -1,9 +1,9 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Jessica Lila Gomes Moreno
+- Emmanuele Sofia Nascimento dos Anjos
+- Gabriel Martins D'Oliveira
 
 Link do Surge: www.link.com.br
 
