@@ -1,13 +1,14 @@
-import React from 'react';
-import { Router } from './Router/Router';
+import React from "react";
+import { Router } from "./Router/Router";
+import { GlobalContextState } from "./Context/globalContextState";
 
-
- const App =()=> {
+const App = () => {
+  const testando = "blblalala";
   return (
-    <div>
-      <Router/>
-    </div>
+    <GlobalContextState.Provider value={testando}>
+      <Router />
+    </GlobalContextState.Provider>
   );
-}
+};
 
 export default App;
