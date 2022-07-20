@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="21" viewBox="0 0 21 21">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_37" data-name="Retângulo 37" width="21" height="21" transform="translate(62 703)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_5" data-name="Grupo 5" transform="translate(-62 -703)" clip-path="url(#clip-path)">
+    <path id="Caminho_36" data-name="Caminho 36" d="M78.207,713.039a.009.009,0,0,1,0-.006l1.34-7.812a.007.007,0,0,1,.007-.006h.424a.007.007,0,0,1,.007,0L83,714.777a.007.007,0,0,1,0,.008l-2.225,1.738a.009.009,0,0,1-.011,0Zm-16.248,5.179a.008.008,0,0,0,.005.007l4.588,1.5a.008.008,0,0,0,.007,0l10.254-7.079a.009.009,0,0,0,0-.006l1.1-7.378a.007.007,0,0,0-.007-.008H68.825l-.006,0-6.859,8.274a.009.009,0,0,0,0,.005Zm6.5,1.889,5.012,1.642h.007l5.967-4.28a.009.009,0,0,0,0-.011l-2.237-3.328a.007.007,0,0,0-.01,0Z" fill="#fff" fill-rule="evenodd"/>
+  </g>
+</svg>
