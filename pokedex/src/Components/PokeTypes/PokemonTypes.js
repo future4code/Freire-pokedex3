@@ -1,8 +1,14 @@
 import React from "react";
+import {TypeButton} from '../PokeTypes/styled'
+import grass from '../../assets/img/type-vectors/grass.svg'
+
 
 function PokemonTypes () {
     return (
-        <div></div>
+        <TypeButton>
+            <img src={grass} alt="grass"/>
+            <p>Planta</p>
+        </TypeButton>
     )
 }
 
