@@ -1,13 +1,14 @@
 import React from "react";
 import { Router } from "./Router/Router";
 import { GlobalContextState } from "./Context/globalContextState";
+import PokeProvider from "./Providers/PokeProvider";
 
 const App = () => {
   const testando = "blblalala";
   return (
-    <GlobalContextState.Provider value={testando}>
+    <PokeProvider>
       <Router />
-    </GlobalContextState.Provider>
+    </PokeProvider>
   );
 };
 
