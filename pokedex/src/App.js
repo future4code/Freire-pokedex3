@@ -1,10 +1,9 @@
 import React from "react";
 import { Router } from "./Router/Router";
-import { GlobalContextState } from "./Context/globalContextState";
-import PokeProvider from "./Providers/PokeProvider";
+import PokeProvider from "./Context/PokeProvider";
 
 const App = () => {
-  const testando = "blblalala";
+  
   return (
     <PokeProvider>
       <Router />

@@ -4,19 +4,39 @@ import { urlBase } from "../Constants/url";
 
 export const useRequestedData = (endpoint, initialState) => {
   const [data, setData] = useState(initialState);
-  const getData = () => {
-    axios
-      .get(`${urlBase}${endpoint}`)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const [dataDetails, setDataDetails] = useState([]);
+
   useEffect(() => {
     getData();
   }, [endpoint]);
 
-  return [data, getData];
+  const getData = async () => {
+    try {
+      const res = await axios.get(`${urlBase}${endpoint}`);
+      setData(res.data.results);
+    } catch (err) {
+      console.log(err.data.message);
+    }
+  };
+
+  let pokemonList = [];
+
+  useEffect(() => {
+    data.map((p) => {
+      const getPokemon = async () => {
+        try {
+          const res = await axios.get(`${urlBase}/${p.name}/`);
+          pokemonList.push(res.data);
+          if (pokemonList.length === 20) {
+            setDataDetails(pokemonList);
+          }
+        } catch (err) {
+          console.log(err.data.message);
+        }
+      };
+      return getPokemon();
+    });
+  }, [data]);
+
+   return [data, dataDetails, getData]
 };

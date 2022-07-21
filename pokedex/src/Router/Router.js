@@ -12,7 +12,7 @@ return(
         <Routes>
             <Route index element={<Home/>} />
             <Route path={"/pokedex"} element={<Pokedex/>} />
-            <Route path={"/details"} element={<Details/>} />
+            <Route path={"/details/:name"} element={<Details/>} />
         </Routes>
     
     </BrowserRouter>
