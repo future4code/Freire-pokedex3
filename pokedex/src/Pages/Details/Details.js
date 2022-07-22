@@ -1,9 +1,11 @@
 import React from "react";
+import { Header } from "../../Components/Header/Header";
 
 export const Details = () => {
   return (
     <div>
-      <p>Details</p>
+      <Header page={"details"}/>
+      
     </div>
   );
 };
