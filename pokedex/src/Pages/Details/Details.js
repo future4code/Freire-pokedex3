@@ -1,82 +1,59 @@
-
-import React from "react";
-import { Header } from "../../Components/Header/Header";
-
 import React, { useContext } from "react";
-import { GlobalContextState } from "../../Context/globalContextState";
-import { useRequestedData} from '../../Hooks/useRequestedData'
-import { useNavigate, useParams } from "react-router-dom"
 import { Header } from "../../Components/Header/Header";
-import { DetailsContainer, ImgTop, BoxImg, BoxStats, statsBar, BoxMoves, TypeLabel } from '../Details/styled'
+import { GlobalContextState } from "../../Context/globalContextState";
+import { useNavigate, useParams } from "react-router-dom"
+import { DetailsContainer, DetH1, ImgTop, BoxImg, BoxStats, statsBar, BoxMoves, TypeLabel } from '../Details/styled'
 
 
 export const Details = () => {
-  const navigate = useNavigate()
-  const params = useParams()
-  const [pokemon] = useRequestedData(`${params.name}/`)
-  console.log(pokemon)
-  const pokeTypes = pokemon && pokemon.types.map((p) => {
-    return (
-      <TypeLabel key={p.id}>
-        <img src={`../../assets/img/type-vectors/${p.type.name}.svg`} alt={p.type.name} />
-        <p>{p.type.name}</p>
-      </TypeLabel>
-    )
+  const {name} = useParams()
+  const {pokeDetails} = useContext(GlobalContextState)
+  
+
+  
+  const pokemon = pokeDetails && pokeDetails.filter((p)=>{
+    if (name === p.name){
+      return(true)
+    }
   })
-  const pokeStats = pokemon && pokemon.stats.maps((p)=>{
+
+  
+  const pokeImgTop = pokemon && pokemon.map((p)=>{
     return(
-      <BoxStats key={p.id}>
-        <p>{p.stat.name}</p>
-        <p>{p.base_stat}</p>
-        <statsBar
-          baseStats={p.base_stat > 150 ? 150 : p.base_stat}     
-
-        />
-      </BoxStats>
+       <ImgTop key={p.id}
+          src={p.sprites.other["official-artwork"].front_default}
+          alt={p.name}
+        />           
     )
   })
-  console.log(pokeStats)
-  const pokeMoves = pokemon && pokemon.moves.slice(0, 4).map((p) => {
-    return (
-    <BoxMoves key={p.id}>
-      <p>{p.moves.name}</p>
-    </BoxMoves>
-    )
-  })
-
-
-  return (
-    <div>
-
-      <Header page={"details"}/>
-      
-
-      <Header/>
-      {/* {pokemon && (
-        <DetailsContainer>
-          <ImgTop
-            src={pokemon.sprites.others.official_artwork.front_default}
-            alt={pokemon.name}
-          />
-          <BoxImg>
+  
+  const pokeImgFB = pokemon && pokemon.map((p)=>{
+    return(
+      <BoxImg key={p.id}>
             <img
-              src={pokemon.sprites.front_default}
+              src={p.sprites.front_default}
               alt={`${pokemon.name} front`}
             />
             <img
-              src={pokemon.sprites.back_default}
+              src={p.sprites.back_default}
               alt={`${pokemon.name} back`}
             />
           </BoxImg>
-          {pokeStats}
+    )
+  })
+  
+  
 
-        </DetailsContainer>
-      )} */}
  
-     {pokeTypes}
-     {pokeStats}
-     {pokeMoves}
-
+  return (
+    <div>
+      {/* <Header page={"details"}/> */}
+      <DetailsContainer>
+        <DetH1>Detalhes</DetH1>
+      {pokeImgFB}
+      {pokeImgTop}
+      </DetailsContainer>
+      
     </div>
   );
 };

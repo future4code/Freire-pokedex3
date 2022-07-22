@@ -5,6 +5,9 @@ import { typeColor } from "../../Constants/typeColor";
 
 export const DetailsContainer = styled.main`
 `
+export const DetH1 = styled.h1`
+
+`
 export const ImgTop = styled.img`
 `
 export const BoxImg = styled.div`
