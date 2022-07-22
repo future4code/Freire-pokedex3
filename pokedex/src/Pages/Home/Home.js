@@ -7,7 +7,7 @@ export const Home = () => {
   
   return (
     <div>
-      <Header page={"home"} />
+      <Header />
       <PokemonTypes />          
     </div>
   );

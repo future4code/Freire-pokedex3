@@ -1,9 +1,14 @@
+
+import React from "react";
+import { Header } from "../../Components/Header/Header";
+
 import React, { useContext } from "react";
 import { GlobalContextState } from "../../Context/globalContextState";
 import { useRequestedData} from '../../Hooks/useRequestedData'
 import { useNavigate, useParams } from "react-router-dom"
 import { Header } from "../../Components/Header/Header";
 import { DetailsContainer, ImgTop, BoxImg, BoxStats, statsBar, BoxMoves, TypeLabel } from '../Details/styled'
+
 
 export const Details = () => {
   const navigate = useNavigate()
@@ -42,6 +47,10 @@ export const Details = () => {
 
   return (
     <div>
+
+      <Header page={"details"}/>
+      
+
       <Header/>
       {/* {pokemon && (
         <DetailsContainer>
@@ -67,6 +76,7 @@ export const Details = () => {
      {pokeTypes}
      {pokeStats}
      {pokeMoves}
+
     </div>
   );
 };
