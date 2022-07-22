@@ -43,7 +43,8 @@ export const PokeProvider = (props) => {
     pokeTypes,
     pokePhotos,
     pokeAdd,
-    pokeList
+    pokeList,
+    pokeDetails
   }
   
 
