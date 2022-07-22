@@ -3,7 +3,9 @@ import { typeColor } from "../../Constants/typeColor";
 
 
 
+
 export const DetailsContainer = styled.main`
+ 
 `
 export const DetH1 = styled.h1`
 
@@ -14,7 +16,22 @@ export const BoxImg = styled.div`
 `
 export const BoxStats = styled.div`
 `
-export const statsBar = styled.div`
+export const LinearProgress = styled.div`
+  width: 60%;
+  background: #f0f0f0;
+  height: 0.6rem;
+  position: relative;
+  top: 0.8rem;
+  border-radius: 0.5rem;
+
+  :after {
+    content: "";
+    height: 0.6rem;
+    width: ${(props) => props.baseStat + "%"};
+    background: ${(props) => typeColor[props.type]};
+    position: absolute;
+    border-radius: 0.5rem;
+  }
 `
 export const BoxMoves = styled.div``
 

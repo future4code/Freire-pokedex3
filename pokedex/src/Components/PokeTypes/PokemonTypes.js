@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import {TypeButton} from '../PokeTypes/styled'
-import grass from '../../assets/img/type-vectors/grass.svg'
+import {GlobalContextState} from '../../Context/globalContextState'
 
 
 function PokemonTypes () {
+    const {pokeDetails} = useContext(GlobalContextState)
     return (
         <TypeButton>
-            <img src={grass} alt="grass"/>
+            <img src='' alt=''/>
             <p>Planta</p>
         </TypeButton>
     )
