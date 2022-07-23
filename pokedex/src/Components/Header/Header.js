@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { goToHomePage, goToPokedex } from "../../Router/Coordinator";
 import {
   ContainerHeader,
@@ -13,6 +13,7 @@ import arrow from "../../assets/img/Arrow.svg";
 import { ButtonDetails } from "./ButtonsDetails";
 
 export const Header = (props) => {
+  const {name} = useParams()
   const page = props.page;
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ export const Header = (props) => {
           </ContainerHeader>
         );
 
-      case "details":
+      case `details/${name}`:
         return (
           <ContainerHeader>
             <TextReturn>
