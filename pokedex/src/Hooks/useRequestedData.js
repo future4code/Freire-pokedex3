@@ -12,31 +12,31 @@ export const useRequestedData = (endpoint, initialState) => {
 
   const getData = async () => {
     try {
-      const res = await axios.get(`${urlBase}${endpoint}`);
-      setData(res.data.results);
+      const res = await axios.get(`${urlBase}/${endpoint}`);
+      setData(res.data);
     } catch (err) {
       console.log(err.data.message);
     }
   };
 
-  let pokemonList = [];
+  // let pokemonList = [];
 
-  useEffect(() => {
-    data.map((p) => {
-      const getPokemon = async () => {
-        try {
-          const res = await axios.get(`${urlBase}/${p.name}/`);
-          pokemonList.push(res.data);
-          if (pokemonList.length === 20) {
-            setDataDetails(pokemonList);
-          }
-        } catch (err) {
-          console.log(err.data.message);
-        }
-      };
-      return getPokemon();
-    });
-  }, [data]);
+  // useEffect(() => {
+  //   data.map((p) => {
+  //     const getPokemon = async () => {
+  //       try {
+  //         const res = await axios.get(`${urlBase}/${p.name}/`);
+  //         pokemonList.push(res.data);
+  //         if (pokemonList.length === 20) {
+  //           setDataDetails(pokemonList);
+  //         }
+  //       } catch (err) {
+  //         console.log(err.data.message);
+  //       }
+  //     };
+  //     return getPokemon();
+  //   });
+  // }, [data]);
 
-   return [data, dataDetails, getData]
+   return [data]
 };
