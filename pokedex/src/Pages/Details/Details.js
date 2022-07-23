@@ -2,58 +2,88 @@ import React, { useContext } from "react";
 import { Header } from "../../Components/Header/Header";
 import { GlobalContextState } from "../../Context/globalContextState";
 import { useNavigate, useParams } from "react-router-dom"
-import { DetailsContainer, DetH1, ImgTop, BoxImg, BoxStats, statsBar, BoxMoves, TypeLabel } from '../Details/styled'
+import { LinearProgress } from "@mui/material";
+import { DetailsContainer, ContainerDetCard, ImgTop, BoxImg, BoxStats, PoStats, Box3, BoxMoves, PoMoves, TypeLabel } from '../Details/styled'
+import { useRequestedData } from "../../Hooks/useRequestedData";
+
+
 
 
 export const Details = () => {
-  const {name} = useParams()
-  const {pokeDetails} = useContext(GlobalContextState)
-  
+  const { name } = useParams()
+  const [pokemon] = useRequestedData(`${name}`)
 
-  
-  const pokemon = pokeDetails && pokeDetails.filter((p)=>{
-    if (name === p.name){
-      return(true)
-    }
-  })
+  console.log(pokemon)
 
-  
-  const pokeImgTop = pokemon && pokemon.map((p)=>{
-    return(
-       <ImgTop key={p.id}
-          src={p.sprites.other["official-artwork"].front_default}
-          alt={p.name}
-        />           
+  const pokeTypes = pokemon && pokemon.types.map((p) => {
+    return (
+      <TypeLabel key={p.id} type={p.type.name}>
+        <img src={`/type-vectors/${p.type.name}.svg`} alt={p.type.name} />
+        <p>{p.type.name}</p>
+      </TypeLabel>
     )
   })
-  
-  const pokeImgFB = pokemon && pokemon.map((p)=>{
-    return(
-      <BoxImg key={p.id}>
-            <img
-              src={p.sprites.front_default}
-              alt={`${pokemon.name} front`}
-            />
-            <img
-              src={p.sprites.back_default}
-              alt={`${pokemon.name} back`}
-            />
-          </BoxImg>
+  const pokeStats = pokemon && pokemon.stats.map((p) => {
+    return (
+      <PoStats key={p.id}>
+
+        <p>{p.stat?.name}</p>
+        <p>{p.base_stat}</p>
+        <LinearProgress
+          variant="determinate"
+          value={p.base_stat / 1.5}
+        />
+
+      </PoStats>
     )
   })
-  
-  
+  const pokeMoves = pokemon && pokemon.moves.slice(0, 4).map((p) => {
+    return (
+      <PoMoves key={p.id}>
+        <p>{p.move?.name}</p>
+      </PoMoves>
+    )
+  })
 
- 
   return (
     <div>
-      {/* <Header page={"details"}/> */}
-      <DetailsContainer>
-        <DetH1>Detalhes</DetH1>
-      {pokeImgFB}
-      {pokeImgTop}
-      </DetailsContainer>
-      
+      <Header page={`details/${name}`} />
+      {pokemon && (
+        <DetailsContainer>
+          <h1>Detalhes</h1>
+          <ContainerDetCard>
+            <BoxImg>
+              <img
+                src={pokemon.sprites.front_default}
+                alt={`${pokemon.name} front`}
+              />
+              <img
+                src={pokemon.sprites.back_default}
+                alt={`${pokemon.name} back`}
+              />
+            </BoxImg>
+            <BoxStats>
+              <h2>Base Stats</h2>
+              {pokeStats}
+            </BoxStats>
+            <Box3>
+              <h2># {pokemon?.id}</h2>
+              <h1>{pokemon?.name}</h1>
+              {pokeTypes}
+              <BoxMoves>
+                <h2>Moves</h2>
+                {pokeMoves}
+              </BoxMoves>
+            </Box3>
+            <ImgTop key={pokemon.id}
+              src={pokemon.sprites.other["official-artwork"].front_default}
+              alt={pokemon.name}
+            />
+          </ContainerDetCard>
+
+        </DetailsContainer>
+      )}
+
     </div>
   );
 };
