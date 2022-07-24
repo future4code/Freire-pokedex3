@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Header } from "../../Components/Header/Header";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
 import {
@@ -14,6 +15,12 @@ import {
   PoMoves,
   TypeLabel,
 } from "../Details/styled";
+
+import { GlobalContextState } from "../../Context/globalContextState";
+import { useNavigate, useParams } from "react-router-dom"
+// import { LinearProgress } from "@mui/material";
+import { DetailsContainer, ContainerDetCard, ImgTop, BoxImg, BoxStats, PoStats, Box3, BoxMoves, PoMoves, TypeLabel } from '../Details/styled'
+
 import { useRequestedData } from "../../Hooks/useRequestedData";
 
 export const Details = () => {
@@ -21,6 +28,7 @@ export const Details = () => {
   const [pokemon] = useRequestedData(`${name}`);
 
   console.log(pokemon);
+
 
   const pokeTypes =
     pokemon &&
@@ -52,6 +60,25 @@ export const Details = () => {
         </PoMoves>
       );
     });
+
+        <p>{p.stat?.name}</p>
+        <p>{p.base_stat}</p>
+        {/* <LinearProgress
+          variant="determinate"
+          value={p.base_stat / 1.5}
+        /> */}
+
+      </PoStats>
+    )
+  })
+  const pokeMoves = pokemon && pokemon.moves.slice(0, 4).map((p) => {
+    return (
+      <PoMoves key={p.id}>
+        <p>{p.move?.name}</p>
+      </PoMoves>
+    )
+  })
+
 
   return (
     <div>
