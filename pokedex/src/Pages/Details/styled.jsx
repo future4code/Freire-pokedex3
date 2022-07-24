@@ -6,7 +6,7 @@ import { typeColor } from "../../Constants/typeColor";
 
 export const DetailsContainer = styled.main`
 background: #5E5E5E;
-display flex;
+display: flex;
 flex-direction: column;
 align-items: center;
 
