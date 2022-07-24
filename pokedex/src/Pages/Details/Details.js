@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Header } from "../../Components/Header/Header";
 import { GlobalContextState } from "../../Context/globalContextState";
 import { useNavigate, useParams } from "react-router-dom"
-import { LinearProgress } from "@mui/material";
+// import { LinearProgress } from "@mui/material";
 import { DetailsContainer, ContainerDetCard, ImgTop, BoxImg, BoxStats, PoStats, Box3, BoxMoves, PoMoves, TypeLabel } from '../Details/styled'
 import { useRequestedData } from "../../Hooks/useRequestedData";
 
@@ -29,10 +29,10 @@ export const Details = () => {
 
         <p>{p.stat?.name}</p>
         <p>{p.base_stat}</p>
-        <LinearProgress
+        {/* <LinearProgress
           variant="determinate"
           value={p.base_stat / 1.5}
-        />
+        /> */}
 
       </PoStats>
     )

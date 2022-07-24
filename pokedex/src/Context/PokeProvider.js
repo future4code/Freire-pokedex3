@@ -1,50 +1,44 @@
 import { GlobalContextState } from "./globalContextState";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRequestedData } from "../Hooks/useRequestedData";
+import { urlBase } from "../Constants/url";
+import axios from "axios";
 
 
 export const PokeProvider = (props) => {
-  const [pokeList, pokeDetails, getPokemon] = useRequestedData("?limit=20offset=0", []);
+  const [pokeList] = useRequestedData("?limit=20offset=0", []);
+  const [pokeDetails, setPokeDetails] = useState(undefined)
   const [pokedex, setPokedex] = useState([]) 
   
+  let pokemonDetails = [];
 
-  const pokeId = pokeDetails && pokeDetails.map (p => {
-    return p.id;
-  })
+  useEffect(() => {
+  pokeList &&
+    pokeList.map((p) => {
+      axios
+        .get(`${urlBase}/${p.name}`)
+        .then((res) => {
+          pokemonDetails.push(res.data);
+          setPokeDetails(pokemonDetails)
+          ;
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    });
 
-  const pokeTypes = pokeDetails && pokeDetails.map (p => {
-    return p.types;
-  })
 
-  const pokeStats = pokeDetails && pokeDetails.map (p => {
-    return p.stats;
-  })    
+}, [pokeList]);
 
-  const pokeMoves = pokeDetails && pokeDetails.map (p => {
-    return p.moves;
-  })
+
+
   
-  const pokePhotos = pokeDetails && pokeDetails.map (p => {
-    return p.sprites
-  }) 
-
-
-  const pokeAdd = () => {
-  
-      let newPoke = pokeId
-       const newArray = [...pokedex, newPoke]
-       setPokedex(newArray) 
-  };
-
   const data = {
-    pokeMoves,
-    pokeId,
-    pokeStats,
-    pokeTypes,
-    pokePhotos,
-    pokeAdd,
     pokeList,
-    pokeDetails
+    pokedex,
+    pokeDetails,
+    setPokeDetails,
+    setPokedex
   }
   
 

@@ -6,19 +6,20 @@ export const useRequestedData = (endpoint, initialState) => {
   const [data, setData] = useState(initialState);
   const [dataDetails, setDataDetails] = useState([]);
 
-  useEffect(() => {
-    getData();
-  }, [endpoint]);
-
+  
   const getData = async () => {
     try {
       const res = await axios.get(`${urlBase}/${endpoint}`);
-      setData(res.data);
+      setData(res.data.results);
     } catch (err) {
       console.log(err.data.message);
     }
   };
 
+  useEffect(() => {
+    getData();
+  }, [endpoint]);
+  
   // let pokemonList = [];
 
   // useEffect(() => {
