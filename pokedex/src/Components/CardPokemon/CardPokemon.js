@@ -1,32 +1,51 @@
 import React, { useContext, useEffect } from "react";
-import { Header } from "../../Components/Header/Header";
 import { GlobalContextState } from "../../Context/globalContextState";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { pokedex } from "../../Pages/Pokedex/Pokedex";
 import { urlBase } from "../../Constants/url";
+import { useRequestedData } from "../../Hooks/useRequestedData";
+import { ImgContainer } from "./CardPokemonStyle";
 
-export default function card(props) {
-  const { pokedex, setPokedex, pokeType, pokeId } =
-    useContext(GlobalContextState);
-}
+export const CardPokemon = () => {
+  const { pokeDetails, setPokeDetails } = useContext(GlobalContextState);
 
-const addNewPokemon = () => {
-  const addToPokedex = [...pokedex, pokeAdd];
-  setPokedex(addNewPokemon);
+  const [pokeList] = useRequestedData("?limit=20offset=0", []);
+
+  // const addNewPokemon = () => {
+  //   const addToPokedex = [...pokedex, pokeAdd];
+  //   setPokedex(addNewPokemon);
+  // };
+
+  console.log(pokeDetails);
+
+  // const pokePhoto =
+  //   pokeDetails &&
+  //   pokeDetails.map((p) => {
+  //     return (
+  //       <div key={p.id}>
+  //         <img
+  //           src={p?.sprites?.other["official-artwork"].front_default}
+  //           alt={p.name}
+  //         />
+  //       </div>
+  //     );
+  //   });
+
+  return (
+    <div>
+      {pokeDetails &&
+        pokeDetails.map((p) => {
+          return (
+            <div key={p.id}>
+              <p>#0{p.id}</p>
+              <p>{p.name}</p>
+              <ImgContainer
+                src={p?.sprites?.other["official-artwork"].front_default}
+                alt={p.name}
+              />
+            </div>
+          );
+        })}
+    </div>
+  );
 };
-
-const getCardPokemon = () => {
-  axios.get(`${urlBase}/${props.name}`).then((res) => {
-    setPokeType(res.data.types);
-    setPokeId(res.data.id);
-    setPokemon(res.data);
-  });
-};
-
-useEffect(() => {
-  getCardPokemon();
-}, []);
-
-// const listTypes = type.map((item, index) => {
-//   return
