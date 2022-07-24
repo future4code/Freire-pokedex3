@@ -17,16 +17,22 @@ const addNewPokemon = () => {
 };
 
 const getCardPokemon = () => {
-  axios.get(`${urlBase}/${props.name}`).then((res) => {
-    setPokeType(res.data.types);
-    setPokeId(res.data.id);
-    setPokemon(res.data);
-  });
+  axios
+    .get(`${urlBase}/${props.name}`)
+    .then((res) => {
+      setPokeType(res.data.types);
+      setPokeId(res.data.id);
+      setPokemon(res.data);
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err.res.data);
+    });
 };
 
 useEffect(() => {
   getCardPokemon();
 }, []);
 
-// const listTypes = type.map((item, index) => {
+//  const listTypes = type.map((item, index) => {
 //   return

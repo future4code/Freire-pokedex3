@@ -1,49 +1,57 @@
 import React, { useContext } from "react";
 import { Header } from "../../Components/Header/Header";
-import { GlobalContextState } from "../../Context/globalContextState";
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
 import { LinearProgress } from "@mui/material";
-import { DetailsContainer, ContainerDetCard, ImgTop, BoxImg, BoxStats, PoStats, Box3, BoxMoves, PoMoves, TypeLabel } from '../Details/styled'
+import {
+  DetailsContainer,
+  ContainerDetCard,
+  ImgTop,
+  BoxImg,
+  BoxStats,
+  PoStats,
+  Box3,
+  BoxMoves,
+  PoMoves,
+  TypeLabel,
+} from "../Details/styled";
 import { useRequestedData } from "../../Hooks/useRequestedData";
 
-
-
-
 export const Details = () => {
-  const { name } = useParams()
-  const [pokemon] = useRequestedData(`${name}`)
+  const { name } = useParams();
+  const [pokemon] = useRequestedData(`${name}`);
 
-  console.log(pokemon)
+  console.log(pokemon);
 
-  const pokeTypes = pokemon && pokemon.types.map((p) => {
-    return (
-      <TypeLabel key={p.id} type={p.type.name}>
-        <img src={`/type-vectors/${p.type.name}.svg`} alt={p.type.name} />
-        <p>{p.type.name}</p>
-      </TypeLabel>
-    )
-  })
-  const pokeStats = pokemon && pokemon.stats.map((p) => {
-    return (
-      <PoStats key={p.id}>
-
-        <p>{p.stat?.name}</p>
-        <p>{p.base_stat}</p>
-        <LinearProgress
-          variant="determinate"
-          value={p.base_stat / 1.5}
-        />
-
-      </PoStats>
-    )
-  })
-  const pokeMoves = pokemon && pokemon.moves.slice(0, 4).map((p) => {
-    return (
-      <PoMoves key={p.id}>
-        <p>{p.move?.name}</p>
-      </PoMoves>
-    )
-  })
+  const pokeTypes =
+    pokemon &&
+    pokemon.types.map((p) => {
+      return (
+        <TypeLabel key={p.id} type={p.type.name}>
+          <img src={`/type-vectors/${p.type.name}.svg`} alt={p.type.name} />
+          <p>{p.type.name}</p>
+        </TypeLabel>
+      );
+    });
+  const pokeStats =
+    pokemon &&
+    pokemon.stats.map((p) => {
+      return (
+        <PoStats key={p.id}>
+          <p>{p.stat?.name}</p>
+          <p>{p.base_stat}</p>
+          <LinearProgress variant="determinate" value={p.base_stat / 1.5} />
+        </PoStats>
+      );
+    });
+  const pokeMoves =
+    pokemon &&
+    pokemon.moves.slice(0, 4).map((p) => {
+      return (
+        <PoMoves key={p.id}>
+          <p>{p.move?.name}</p>
+        </PoMoves>
+      );
+    });
 
   return (
     <div>
@@ -75,15 +83,14 @@ export const Details = () => {
                 {pokeMoves}
               </BoxMoves>
             </Box3>
-            <ImgTop key={pokemon.id}
+            <ImgTop
+              key={pokemon.id}
               src={pokemon.sprites.other["official-artwork"].front_default}
               alt={pokemon.name}
             />
           </ContainerDetCard>
-
         </DetailsContainer>
       )}
-
     </div>
   );
 };
