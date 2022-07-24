@@ -38,6 +38,7 @@ export const PokeProvider = (props) => {
     pokedex,
     pokeDetails,
     setPokeDetails,
+    setPokedex
   }
   
 

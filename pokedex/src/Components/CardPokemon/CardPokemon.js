@@ -7,32 +7,30 @@ import { useRequestedData } from "../../Hooks/useRequestedData";
 import { ImgContainer, TypeLabel } from "./CardPokemonStyle";
 
 export const CardPokemon = () => {
-  const { pokeDetails, setPokeDetails } = useContext(GlobalContextState);
+  const { pokeDetails, setPokeDetails, pokedex, setPokedex } = useContext(GlobalContextState);
 
   const [pokeList] = useRequestedData("?limit=20offset=0", []);
 
-  // const addNewPokemon = () => {
-  //   const addToPokedex = [...pokedex, pokeAdd];
-  //   setPokedex(addNewPokemon);
-  // key={p?.id}
-  // };
+  const addNewPokemon = (id) => {
+    const arrayPokedex = [...pokedex];
+    if(arrayPokedex.includes(id)){
+      alert("Pokemon já capturado na pokedex")
+    }else{
+    arrayPokedex.push(id);
+    setPokedex(arrayPokedex);
+    localStorage.setItem('pokedex', JSON.stringify(pokedex))
+  }
+  };
+
 
   console.log(pokeDetails);
+  console.log(pokedex);
 
-  const pokeTypes =
-    pokeDetails &&
-    pokeDetails.types &&
-    pokeDetails.types.map((p) => {
-      return (
-        <TypeLabel type={p?.type?.name}>
-          <img src={`/type-vectors/${p?.type?.name}.svg`} alt={p.type.name} />
-          <p>{p?.type?.name}</p>
-        </TypeLabel>
-      );
-    });
+  // useEffect(() => {
+  //   addNewPokemon()
+  // }, [pokedex])
 
-  // console.log(pokeDetails.id)
-
+ 
   return (
     <div>
       {pokeDetails &&
@@ -57,7 +55,7 @@ export const CardPokemon = () => {
                 alt={p.name}
               />
               <button>Detalhes</button>
-              <button>Adicionar</button>
+              <button onClick={() => addNewPokemon(p.id)}>Adicionar</button>
             </div>
           );
         })}
