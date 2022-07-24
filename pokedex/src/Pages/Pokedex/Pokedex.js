@@ -8,7 +8,7 @@ export const Pokedex = ()=>{
     return (
     <div>
         <Header page={'pokedex'}/>        
-    </div>
-    )
 
-}
+    </div>
+  );
+};
