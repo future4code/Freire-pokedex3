@@ -23,9 +23,29 @@ export const CardPokemon = () => {
   };
 
 
+const getCardPokemon = () => {
+  axios
+    .get(`${urlBase}/${props.name}`)
+    .then((res) => {
+      setPokeType(res.data.types);
+      setPokeId(res.data.id);
+      setPokemon(res.data);
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err.res.data);
+   });
+};
+=======
+
+
   console.log(pokeDetails);
   console.log(pokedex);
 
+
+//  const listTypes = type.map((item, index) => {
+//   return
+=======
   // useEffect(() => {
   //   addNewPokemon()
   // }, [pokedex])
@@ -62,3 +82,4 @@ export const CardPokemon = () => {
     </div>
   );
 };
+

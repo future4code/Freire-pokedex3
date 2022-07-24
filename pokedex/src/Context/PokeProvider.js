@@ -4,8 +4,23 @@ import { useRequestedData } from "../Hooks/useRequestedData";
 import { urlBase } from "../Constants/url";
 import axios from "axios";
 
-
 export const PokeProvider = (props) => {
+
+  const [pokeList, getPokemon] = useRequestedData("?limit=20offset=0", []);
+  const [pokedex, setPokedex] = useState([]);
+  const [pokeDetails] = setPokeDetails([]);
+  console.log(pokeList);
+  // const pokeAdd = () => {
+  //   let newPoke = pokeId;
+  //   const newArray = [...pokedex, newPoke];
+  //   setPokedex(newArray);
+  // };
+
+  const data = {
+    pokeList,
+    pokeDetails,
+  };
+=======
   const [pokeList] = useRequestedData("?limit=20offset=0", []);
   const [pokeDetails, setPokeDetails] = useState(undefined)
   const [pokedex, setPokedex] = useState([]) 
@@ -41,6 +56,7 @@ export const PokeProvider = (props) => {
     setPokedex
   }
   
+
 
   return (
     <GlobalContextState.Provider value={data}>
