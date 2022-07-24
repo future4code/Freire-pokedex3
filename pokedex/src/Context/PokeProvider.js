@@ -8,41 +8,9 @@ export const PokeProvider = (props) => {
   const [pokedex, setPokedex] = useState([]) 
   
 
-  const pokeId = pokeDetails && pokeDetails.map (p => {
-    return p.id;
-  })
-
-  const pokeTypes = pokeDetails && pokeDetails.map (p => {
-    return p.types;
-  })
-
-  const pokeStats = pokeDetails && pokeDetails.map (p => {
-    return p.stats;
-  })    
-
-  const pokeMoves = pokeDetails && pokeDetails.map (p => {
-    return p.moves;
-  })
   
-  const pokePhotos = pokeDetails && pokeDetails.map (p => {
-    return p.sprites
-  }) 
-
-
-  const pokeAdd = () => {
-  
-      let newPoke = pokeId
-       const newArray = [...pokedex, newPoke]
-       setPokedex(newArray) 
-  };
-
   const data = {
-    pokeMoves,
-    pokeId,
-    pokeStats,
-    pokeTypes,
-    pokePhotos,
-    pokeAdd,
+    
     pokeList,
     pokeDetails
   }

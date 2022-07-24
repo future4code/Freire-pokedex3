@@ -15,20 +15,23 @@ align-items: center;
 `
 export const ContainerDetCard = styled.div`
 display:grid;
-grid-template-columns: 3fr 3fr 3fr 1fr;
-height: 663px;
+grid-template-columns: 2fr 2fr 2fr 1fr;
+height: 660px;
 width: 1389px;
 border-radius: 37px;
 background: white;
-padding: 20px;
-
+padding: 00px;
+background: ${(props) => typeColor[props.type]};
 
 `
 
 export const BoxImg = styled.div`
+  height: 613px;
+  width: 300px;
   display:flex;
   flex-direction: column;
   gap:10px;
+  margin-top:50px;
 
   img{
     height: 282px;
@@ -38,16 +41,20 @@ export const BoxImg = styled.div`
     border-radius: 8px;
     background-color: #fff;
     margin-left:20px;
-    border: 1px solid red;
+    
 
   }
 `
 export const BoxStats = styled.div`
 height: 613px;
-width: 343px;
+width: 350px;
 left: 360px;
 top: 24px;
 border-radius: 12px;
+background-color: #fff;
+text-align:center;
+margin-top:50px;
+
 
 `
 export const PoStats = styled.div`
@@ -56,26 +63,15 @@ justify-content: center;
 align-items: center;
 grid-template-columns: 3fr 1fr 6fr ;
 
+
 `
 export const LinearProgress = styled.div`
-  width: 60%;
-  background: #f0f0f0;
-  height: 0.6rem;
-  position: relative;
-  top: 0.8rem;
-  border-radius: 0.5rem;
-
-  :after {
-    content: "";
-    height: 0.6rem;
-    width: ${(props) => props.baseStat + "%"};
-    background: ${(props) => typeColor[props.type]};
-    position: absolute;
-    border-radius: 0.5rem;
-  }
+background: ${(props) => typeColor[props.type]};
 `
 
 export const Box3 = styled.div`
+height: 613px;
+width: 350px;
 `
 
 export const TypeLabel = styled.div`
@@ -98,7 +94,7 @@ export const TypeLabel = styled.div`
 `
 
 export const BoxMoves = styled.div`
-height: 453px;
+height: 350px;
 width: 292px;
 left: 771px;
 top: 184px;
@@ -110,10 +106,13 @@ background: #FFFFFF;
 export const PoMoves = styled.div`
 
 `
-export const ImgTop = styled.img`
-height: 270px;
-width: 270px;
-margin-top: -150px;
+export const ImgTop = styled.div`
+
+    img{
+      height: 270px;
+      width: 270px;
+      margin-top: -150px;
+    }
 
 
 `

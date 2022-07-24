@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Header } from "../../Components/Header/Header";
-import { GlobalContextState } from "../../Context/globalContextState";
 import { useNavigate, useParams } from "react-router-dom"
 import { LinearProgress } from "@mui/material";
 import { DetailsContainer, ContainerDetCard, ImgTop, BoxImg, BoxStats, PoStats, Box3, BoxMoves, PoMoves, TypeLabel } from '../Details/styled'
@@ -12,6 +11,7 @@ import { useRequestedData } from "../../Hooks/useRequestedData";
 export const Details = () => {
   const { name } = useParams()
   const [pokemon] = useRequestedData(`${name}`)
+  const pokeType = pokemon && pokemon?.types[0]?.type?.name;
 
   console.log(pokemon)
 
@@ -32,6 +32,7 @@ export const Details = () => {
         <LinearProgress
           variant="determinate"
           value={p.base_stat / 1.5}
+          type={pokeType}
         />
 
       </PoStats>
@@ -51,7 +52,7 @@ export const Details = () => {
       {pokemon && (
         <DetailsContainer>
           <h1>Detalhes</h1>
-          <ContainerDetCard>
+          <ContainerDetCard type={pokeType}>
             <BoxImg>
               <img
                 src={pokemon.sprites.front_default}
@@ -75,10 +76,10 @@ export const Details = () => {
                 {pokeMoves}
               </BoxMoves>
             </Box3>
-            <ImgTop key={pokemon.id}
-              src={pokemon.sprites.other["official-artwork"].front_default}
-              alt={pokemon.name}
-            />
+            <ImgTop key={pokemon.id}>
+              <img src={pokemon.sprites.other["official-artwork"].front_default}
+              alt={pokemon.name}/>
+            </ImgTop>
           </ContainerDetCard>
 
         </DetailsContainer>
