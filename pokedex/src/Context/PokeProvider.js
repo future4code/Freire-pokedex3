@@ -9,6 +9,7 @@ export const PokeProvider = (props) => {
   const [pokeDetails, setPokeDetails] = useState(undefined);
   const [pokedex, setPokedex] = useState([]);
 
+
   let pokemonDetails = [];
 
   useEffect(() => {
