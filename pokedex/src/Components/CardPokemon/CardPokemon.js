@@ -10,12 +10,14 @@ import { goToDetails } from "../../Router/Coordinator";
 export const CardPokemon = () => {
   const { pokeDetails, setPokeDetails, pokedex, setPokedex } =
     useContext(GlobalContextState);
+
   const navigate = useNavigate();
   const [pokeList] = useRequestedData("?limit=20offset=0", []);
 
   const addNewPokemon = (id) => {
     const arrayPokedex = [...pokedex];
     if (arrayPokedex.includes(id)) {
+
     } else {
       arrayPokedex.push(id);
       setPokedex(arrayPokedex);
@@ -23,12 +25,14 @@ export const CardPokemon = () => {
     }
   };
 
+
 console.log(pokeDetails)
 console.log(pokedex)
 
   useEffect(() => {
     addNewPokemon();
   }, [pokedex]);
+
 
   return (
     <div>
