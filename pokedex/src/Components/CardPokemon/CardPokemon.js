@@ -7,50 +7,45 @@ import { useRequestedData } from "../../Hooks/useRequestedData";
 import { ImgContainer, TypeLabel } from "./CardPokemonStyle";
 
 export const CardPokemon = () => {
-  const { pokeDetails, setPokeDetails, pokedex, setPokedex } = useContext(GlobalContextState);
+  const { pokeDetails, setPokeDetails, pokedex, setPokedex } =
+    useContext(GlobalContextState);
 
   const [pokeList] = useRequestedData("?limit=20offset=0", []);
 
   const addNewPokemon = (id) => {
     const arrayPokedex = [...pokedex];
-    if(arrayPokedex.includes(id)){
-      alert("Pokemon já capturado na pokedex")
-    }else{
-    arrayPokedex.push(id);
-    setPokedex(arrayPokedex);
-    localStorage.setItem('pokedex', JSON.stringify(pokedex))
-  }
+    if (arrayPokedex.includes(id)) {
+      alert("Pokemon já capturado na pokedex");
+    } else {
+      arrayPokedex.push(id);
+      setPokedex(arrayPokedex);
+      localStorage.setItem("pokedex", JSON.stringify(pokedex));
+    }
   };
 
-
-const getCardPokemon = () => {
-  axios
-    .get(`${urlBase}/${props.name}`)
-    .then((res) => {
-      setPokeType(res.data.types);
-      setPokeId(res.data.id);
-      setPokemon(res.data);
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err.res.data);
-   });
-};
-=======
-
+  const getCardPokemon = () => {
+    axios
+      .get(`${urlBase}/${props.name}`)
+      .then((res) => {
+        setPokeType(res.data.types);
+        setPokeId(res.data.id);
+        setPokemon(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.res.data);
+      });
+  };
 
   console.log(pokeDetails);
   console.log(pokedex);
 
-
-//  const listTypes = type.map((item, index) => {
-//   return
-=======
+  //  const listTypes = type.map((item, index) => {
+  //   return
   // useEffect(() => {
   //   addNewPokemon()
   // }, [pokedex])
 
- 
   return (
     <div>
       {pokeDetails &&
@@ -82,4 +77,3 @@ const getCardPokemon = () => {
     </div>
   );
 };
-
