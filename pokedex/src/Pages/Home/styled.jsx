@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.main`
   margin: 0px auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   background-color: #5e5e5e;
   gap: 20px;

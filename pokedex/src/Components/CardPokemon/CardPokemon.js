@@ -4,7 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { urlBase } from "../../Constants/url";
 import { useRequestedData } from "../../Hooks/useRequestedData";
-import { ImgContainer, TypeLabel } from "./CardPokemonStyle";
+import {
+  ImgContainer,
+  TypeLabel,
+  ContainerCard,
+  TypeBox,
+  CardBox1,
+  CardBox2,
+} from "./styled";
 import { goToDetails } from "../../Router/Coordinator";
 
 export const CardPokemon = () => {
@@ -17,7 +24,6 @@ export const CardPokemon = () => {
   const addNewPokemon = (id) => {
     const arrayPokedex = [...pokedex];
     if (arrayPokedex.includes(id)) {
-
     } else {
       arrayPokedex.push(id);
       setPokedex(arrayPokedex);
@@ -25,46 +31,54 @@ export const CardPokemon = () => {
     }
   };
 
-
-console.log(pokeDetails)
-console.log(pokedex)
+  console.log(pokeDetails);
+  console.log(pokedex);
 
   useEffect(() => {
     addNewPokemon();
   }, [pokedex]);
 
-
   return (
     <div>
-      {pokeDetails && pokeDetails.map((p) => {
+      {pokeDetails &&
+        pokeDetails.map((p) => {
           return (
-            <div key={p.id}>
-              <p>#0{p.id}</p>
-              <p>{p.name}</p>
-              {p.types.map((t) => {
-                return (
-                  <TypeLabel key={t.id} type={t?.type?.name}>
-                    <img
-                      src={`/type-vectors/${t?.type?.name}.svg`}
-                      alt={t.type.name}
-                    />
-                    <p>{t?.type?.name}</p>
-                  </TypeLabel>
-                );
-              })}
-              <ImgContainer
-                src={p?.sprites?.other["official-artwork"].front_default}
-                alt={p.name}
-              />
-              <button
-                onClick={() => {
-                  goToDetails(navigate, p.name);
-                }}
-              >
-                Detalhes
-              </button>
-              <button onClick={() => addNewPokemon(p.name)}>Adicionar</button>
-            </div>
+            <ContainerCard key={p.id}>
+              <CardBox1>
+                <div>
+                  <p>#0{p.id}</p>
+                  <h2>{p.name}</h2>
+                  <TypeBox>
+                    {p.types.map((t) => {
+                      return (
+                        <TypeLabel key={t.id} type={t?.type?.name}>
+                          <img
+                            src={`/type-vectors/${t?.type?.name}.svg`}
+                            alt={t.type.name}
+                          />
+                          <p>{t?.type?.name}</p>
+                        </TypeLabel>
+                      );
+                    })}
+                  </TypeBox>
+                </div>
+                <button
+                  onClick={() => {
+                    goToDetails(navigate, p.name);
+                  }}
+                >
+                  Detalhes
+                </button>
+              </CardBox1>
+              <CardBox2>
+                <ImgContainer
+                  src={p?.sprites?.other["official-artwork"].front_default}
+                  alt={p.name}
+                />
+
+                <button onClick={() => addNewPokemon(p.name)}>Adicionar</button>
+              </CardBox2>
+            </ContainerCard>
           );
         })}
     </div>
