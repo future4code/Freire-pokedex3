@@ -3,46 +3,27 @@ import { useParams } from "react-router-dom";
 import { GlobalContextState } from "../../Context/globalContextState";
 import { ButtonAdd, ButtonRemove } from "./ButtonsDetailsStyle";
 
-
-
-
 export const ButtonDetails = () => {
+  const { pokeId, setPokedex, pokedex } = useContext(GlobalContextState);
+  const { name } = useParams();
 
-  const { pokeId, setPokedex} = useContext(GlobalContextState)
-  const {name} = useParams()
-
-  const pokedex = ['bulbasaur', 'squirtle']
-  
-  
-  console.log(pokeId)
-  console.log(pokedex)
-    
+  const addNewPokemon = (id) => {
+    const arrayPokedex = [...pokedex];
+    if (arrayPokedex.includes(id)) {
+    } else {
+      arrayPokedex.push(id);
+      setPokedex(arrayPokedex);
+      localStorage.setItem("pokedex", JSON.stringify(pokedex));
+    }
+  };
 
   const RenderButtonDetails = () => {
-
-    if(pokedex.includes(name)) {
-        return (
-            <ButtonRemove>Remover</ButtonRemove>
-        )
+    if (pokedex.includes(name)) {
+      return <ButtonRemove>Remover</ButtonRemove>;
     } else {
-        return (
-            <ButtonAdd>Adicionar</ButtonAdd>
-        )
+      return <ButtonAdd onClick={()=> addNewPokemon(name)}>Adicionar</ButtonAdd>;
     }
+  };
 
-  }
-
-
-
-
-    return(
-        <>
-        {RenderButtonDetails()}
-        </>
-    )
-
-
-
-
-
-}
+  return <>{RenderButtonDetails()}</>;
+};

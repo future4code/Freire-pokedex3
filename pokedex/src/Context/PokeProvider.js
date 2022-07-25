@@ -4,8 +4,8 @@ import { useRequestedData } from "../Hooks/useRequestedData";
 import { urlBase } from "../Constants/url";
 import axios from "axios";
 
-
 export const PokeProvider = (props) => {
+
   const [pokeList] = useRequestedData("?limit=20offset=0", []);
   const [pokeDetails, setPokeDetails] = useState(undefined)
   const [pokedex, setPokedex] = useState([]) 
@@ -30,6 +30,10 @@ export const PokeProvider = (props) => {
 
 }, [pokeList]);
 
+const pokeId = pokeDetails && pokeDetails.map((p)=> {
+  return p.id
+})
+
 
 
   
@@ -38,9 +42,11 @@ export const PokeProvider = (props) => {
     pokedex,
     pokeDetails,
     setPokeDetails,
-    setPokedex
+    setPokedex,
+    pokeId
   }
   
+
 
   return (
     <GlobalContextState.Provider value={data}>
