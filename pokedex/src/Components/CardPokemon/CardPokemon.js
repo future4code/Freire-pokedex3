@@ -5,17 +5,19 @@ import axios from "axios";
 import { urlBase } from "../../Constants/url";
 import { useRequestedData } from "../../Hooks/useRequestedData";
 import { ImgContainer, TypeLabel } from "./CardPokemonStyle";
+import { goToDetails } from "../../Router/Coordinator";
 
 export const CardPokemon = () => {
   const { pokeDetails, setPokeDetails, pokedex, setPokedex } =
     useContext(GlobalContextState);
 
+  const navigate = useNavigate();
   const [pokeList] = useRequestedData("?limit=20offset=0", []);
 
   const addNewPokemon = (id) => {
     const arrayPokedex = [...pokedex];
     if (arrayPokedex.includes(id)) {
-      alert("Pokemon já capturado na pokedex");
+
     } else {
       arrayPokedex.push(id);
       setPokedex(arrayPokedex);
@@ -23,33 +25,18 @@ export const CardPokemon = () => {
     }
   };
 
-  const getCardPokemon = () => {
-    axios
-      .get(`${urlBase}/${props.name}`)
-      .then((res) => {
-        setPokeType(res.data.types);
-        setPokeId(res.data.id);
-        setPokemon(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.res.data);
-      });
-  };
 
-  console.log(pokeDetails);
-  console.log(pokedex);
+console.log(pokeDetails)
+console.log(pokedex)
 
-  //  const listTypes = type.map((item, index) => {
-  //   return
-  // useEffect(() => {
-  //   addNewPokemon()
-  // }, [pokedex])
+  useEffect(() => {
+    addNewPokemon();
+  }, [pokedex]);
+
 
   return (
     <div>
-      {pokeDetails &&
-        pokeDetails.map((p) => {
+      {pokeDetails && pokeDetails.map((p) => {
           return (
             <div key={p.id}>
               <p>#0{p.id}</p>
@@ -69,8 +56,14 @@ export const CardPokemon = () => {
                 src={p?.sprites?.other["official-artwork"].front_default}
                 alt={p.name}
               />
-              <button>Detalhes</button>
-              <button onClick={() => addNewPokemon(p.id)}>Adicionar</button>
+              <button
+                onClick={() => {
+                  goToDetails(navigate, p.name);
+                }}
+              >
+                Detalhes
+              </button>
+              <button onClick={() => addNewPokemon(p.name)}>Adicionar</button>
             </div>
           );
         })}
