@@ -10,7 +10,7 @@ export const useRequestedData = (endpoint, initialState) => {
   const getData = async () => {
     try {
       const res = await axios.get(`${urlBase}/${endpoint}`);
-      setData(res.data.results);
+      setData(res.data);
     } catch (err) {
       console.log(err.data.message);
     }

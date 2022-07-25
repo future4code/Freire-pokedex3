@@ -8,7 +8,7 @@ export const DetailsContainer = styled.main`
 background: #5E5E5E;
 width:100vw;
 height:120vh;
-display flex;
+display: flex;
 flex-direction: column;
 align-items: center;
 
@@ -126,7 +126,7 @@ export const PoMoves = styled.div`
 
 height: 40px;
 text-align:center;
-width 200px;
+width: 200px;
 background:#D9DDDD;
 border-radius: 8px;
      

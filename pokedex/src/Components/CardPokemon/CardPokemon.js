@@ -31,19 +31,21 @@ export const CardPokemon = () => {
     }
   };
 
+
   console.log(pokeDetails);
-  console.log(pokedex);
+
+  
 
   useEffect(() => {
     addNewPokemon();
   }, [pokedex]);
 
   return (
-    <div>
+    <>
       {pokeDetails &&
         pokeDetails.map((p) => {
           return (
-            <ContainerCard key={p.id}>
+            <ContainerCard key={p.id} type={p.types[0]?.type?.name}>
               <CardBox1>
                 <div>
                   <p>#0{p.id}</p>
@@ -81,6 +83,6 @@ export const CardPokemon = () => {
             </ContainerCard>
           );
         })}
-    </div>
+    </>
   );
 };

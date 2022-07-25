@@ -21,8 +21,8 @@ const pokeId = pokeDetails && pokeDetails.map((p)=> {
 
 
   useEffect(() => {
-    pokeList &&
-      pokeList.map((p) => {
+    pokeList && pokeList.results &&
+      pokeList.results.map((p) => {
         axios
           .get(`${urlBase}/${p.name}`)
           .then((res) => {

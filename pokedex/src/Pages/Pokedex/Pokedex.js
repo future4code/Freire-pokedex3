@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../Components/Header/Header";
 import { GlobalContextState } from "../../Context/globalContextState";
-import { TypeLabel, ImgContainer } from "./PokedexStyle";
+import { TypeLabel, ImgContainer, ContainerCard } from "./PokedexStyle";
 import { goToDetails } from "../../Router/Coordinator";
 
 export const Pokedex = () => {
@@ -37,7 +37,7 @@ export const Pokedex = () => {
       })
       .map((p) => {
         return (
-          <div key={p.id}>
+          <ContainerCard key={p.id} type={p.types[0].type.name}>
             <p>#0{p.id}</p>
             <p>{p.name}</p>
             {p.types.map((t) => {
@@ -64,7 +64,7 @@ export const Pokedex = () => {
               Detalhes
             </button>
             <button>Remover</button>
-          </div>
+          </ContainerCard>
         );
       });
 

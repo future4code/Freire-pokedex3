@@ -6,7 +6,8 @@ export const ContainerCard = styled.div`
   width: 440px;
   border-radius: 12px;
   display: flex;
-  background: green;
+  justify-content: space-between;
+  background: ${(props) => typeColor[props.type]};
   p {
     margin: 0;
     font-size: 10px;
@@ -31,7 +32,16 @@ export const TypeBox = styled.div`
   display: flex;
 `;
 
-export const CardBox2 = styled.div``;
+export const CardBox2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  button {
+    height: 30px;
+    width: 100px;
+  }
+`;
 
 export const ImgContainer = styled.img`
   height: 190px;

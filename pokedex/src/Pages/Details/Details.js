@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Header } from "../../Components/Header/Header";
 import { useNavigate, useParams } from "react-router-dom"
-import { LinearProgress } from "@mui/material";
+// import { LinearProgress } from "@mui/material";
 import { DetailsContainer, ContainerDetCard, ImgTop, BoxImg, BoxStats, PoStats, Box3, BoxMoves, PoMoves, TypeLabel, BoxType } from '../Details/styled'
 import { useRequestedData } from "../../Hooks/useRequestedData";
 
@@ -29,11 +29,11 @@ export const Details = () => {
 
         <p>{p.stat?.name.toUpperCase()}</p>
         <p>{p.base_stat}</p>
-        <LinearProgress
+        {/* <LinearProgress
           variant="determinate"
           value={p.base_stat / 1}
           type={pokeType}
-        />
+        /> */}
 
       </PoStats>
     )

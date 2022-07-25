@@ -1,9 +1,51 @@
 import styled from "styled-components";
 import { typeColor } from "../../Constants/typeColor";
 
+export const ContainerCard = styled.div`
+  height: 210px;
+  width: 440px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  background: ${(props) => typeColor[props.type]};
+  p {
+    margin: 0;
+    font-size: 10px;
+  }
+  h2 {
+    margin: 0;
+  }
+`;
+
+export const CardBox1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  button {
+    height: 30px;
+    width: 100px;
+  }
+`;
+
+export const TypeBox = styled.div`
+  display: flex;
+`;
+
+export const CardBox2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  button {
+    height: 30px;
+    width: 100px;
+  }
+`;
+
 export const ImgContainer = styled.img`
-  height: 200px;
-  width: 200px;
+  height: 190px;
+  width: 190px;
 `;
 
 export const TypeLabel = styled.div`
