@@ -6,7 +6,7 @@ import { DetailsContainer, ContainerDetCard, ImgTop, BoxImg, BoxStats, PoStats, 
 import { useRequestedData } from "../../Hooks/useRequestedData";
 
 
-
+//
 
 export const Details = () => {
   const { name } = useParams()
